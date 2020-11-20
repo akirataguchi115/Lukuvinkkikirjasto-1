@@ -1,1 +1,1 @@
-# Lukuvinkkikirjasto - OhTu-Ryhmä 18
+# Lukuvinkkikirjasto - OhTu Ryhmä 18
