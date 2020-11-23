@@ -13,7 +13,7 @@ dependencies {
 }
 
 application {
-    mainClass = 'Lukuvinkkikirjasto.App'
+    mainClass = 'lukuvinkkikirjasto.Main'
 }
 
 run {
