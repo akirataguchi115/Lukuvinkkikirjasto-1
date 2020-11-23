@@ -1,14 +1,12 @@
 package lukuvinkkikirjasto.ui;
 
-import java.util.Scanner;
-
 public class Unknown extends Command {
     
-    public Unknown(Scanner reader) {
-        super(reader);
+    public Unknown(IO io) {
+        super(io);
     }
 
     public void execute() {
-        System.out.println("Command not found");
+        io.output("Command not found");
     }
 }

@@ -3,19 +3,14 @@
  */
 package lukuvinkkikirjasto;
 
-import java.util.Scanner;
-
+import lukuvinkkikirjasto.ui.IO;
+import lukuvinkkikirjasto.ui.SystemIO;
 import lukuvinkkikirjasto.ui.UserInterface;
 
 public class Main {
-    public String getGreeting() {
-        return "Hello World!";
-    }
-
     public static void main(String[] args) {
-        System.out.println(new Main().getGreeting());
-        Scanner reader = new Scanner(System.in);
-        UserInterface ui = new UserInterface(reader);
+        IO systemIO = new SystemIO();
+        UserInterface ui = new UserInterface(systemIO);
         ui.start();
     }
 }

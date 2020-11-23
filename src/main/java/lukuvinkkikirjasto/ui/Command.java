@@ -1,12 +1,10 @@
 package lukuvinkkikirjasto.ui;
 
-import java.util.Scanner;
-
 public abstract class Command {
-    protected Scanner reader;
+    protected IO io;
     
-    public Command(Scanner reader) {
-        this.reader = reader;
+    public Command(IO io) {
+        this.io = io;
     }
 
     public abstract void execute();

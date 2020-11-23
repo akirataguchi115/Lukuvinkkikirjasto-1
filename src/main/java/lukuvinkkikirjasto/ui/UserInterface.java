@@ -1,34 +1,33 @@
 package lukuvinkkikirjasto.ui;
 
 import java.util.HashMap;
-import java.util.Scanner;
 
 public class UserInterface {
     private String[] commandDescriptions = {
-        "exit"
+        "exit - closes the application"
     };
-    private Scanner reader;
+    private IO io;
     private HashMap<String, Command> commands = new HashMap<String, Command>();
     private Command unknown;
 
-    public UserInterface(Scanner reader) {
-        this.reader = reader;
-        commands.put("exit", new Exit(reader));
-        unknown = new Unknown(reader);
+    public UserInterface(IO io) {
+        this.io = io;
+        commands.put("exit", new Exit(io));
+        unknown = new Unknown(io);
     }
-
+    
     public void start() {
         while (true) {
-            System.out.println("Here are the available commands:");
             printCommands();
-            String input = reader.nextLine();
+            String input = io.input();
             chooseCommand(input).execute();
         }
     }
-
+    
     private void printCommands() {
+        io.output("Here are the available commands:");
         for (String command : commandDescriptions) {
-            System.out.println(command);
+            io.output(command);
         }
     }
 

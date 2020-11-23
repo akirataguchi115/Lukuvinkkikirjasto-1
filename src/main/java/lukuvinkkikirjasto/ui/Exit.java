@@ -1,11 +1,9 @@
 package lukuvinkkikirjasto.ui;
 
-import java.util.Scanner;
-
 public class Exit extends Command {
 
-    public Exit(Scanner reader) {
-        super(reader);
+    public Exit(IO io) {
+        super(io);
     }
 
     public void execute() {
