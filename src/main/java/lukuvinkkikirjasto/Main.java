@@ -3,16 +3,23 @@
  */
 package lukuvinkkikirjasto;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
 import lukuvinkkikirjasto.ui.IO;
 import lukuvinkkikirjasto.ui.SystemIO;
 import lukuvinkkikirjasto.ui.UserInterface;
 import lukuvinkkikirjasto.domain.ReadingTipService;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
+        Connection db = DriverManager.getConnection("jdbc:sqlite:database.db");
+        Statement s = db.createStatement();
         IO systemIO = new SystemIO();
         ReadingTipService rtService = new ReadingTipService();
         UserInterface ui = new UserInterface(systemIO, rtService);
         ui.start();
+        
     }
 }

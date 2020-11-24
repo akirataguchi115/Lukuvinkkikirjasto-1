@@ -56,5 +56,9 @@ public class ReadingTip {
         return true;
     }
     
+    @Override
+    public String toString() {
+        return ("Header: " + this.header + "\nDescription: " + this.description);
+    }
     
 }
