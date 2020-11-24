@@ -14,8 +14,6 @@ import lukuvinkkikirjasto.domain.ReadingTipService;
 
 public class Main {
     public static void main(String[] args) throws SQLException {
-        Connection db = DriverManager.getConnection("jdbc:sqlite:database.db");
-        Statement s = db.createStatement();
         IO systemIO = new SystemIO();
         ReadingTipService rtService = new ReadingTipService();
         UserInterface ui = new UserInterface(systemIO, rtService);
