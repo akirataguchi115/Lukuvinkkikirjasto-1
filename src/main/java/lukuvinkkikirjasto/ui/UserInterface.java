@@ -25,7 +25,7 @@ public class UserInterface {
         while (true) {
             printCommands();
             String input = io.input();
-            chooseCommand(input).execute();
+            chooseCommand(input);
         }
     }
     
@@ -46,7 +46,14 @@ public class UserInterface {
         rtService.add(new ReadingTip(header, description));
     }
 
-    private Command chooseCommand(String input) {
-        return commands.getOrDefault(input, unknown);
+    private void chooseCommand(String input) {
+        switch (input) {
+            case "exit":
+                System.exit(0);
+                break;
+            case "add":
+                createReadingTip();
+                break;
+        }
     }
 }
