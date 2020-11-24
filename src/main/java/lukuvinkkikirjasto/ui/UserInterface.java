@@ -6,7 +6,8 @@ import lukuvinkkikirjasto.domain.ReadingTipService;
 
 public class UserInterface {
     private String[] commandDescriptions = {
-        "exit - closes the application"
+        "exit - closes the application",
+        "new  - add a new reading tip"
     };
     private IO io;
     private HashMap<String, Command> commands = new HashMap<String, Command>();
@@ -37,7 +38,6 @@ public class UserInterface {
     }
     
     
-    
     public void createReadingTip() {
         io.output("Header: ");
         String header = io.input();
@@ -51,7 +51,7 @@ public class UserInterface {
             case "exit":
                 System.exit(0);
                 break;
-            case "add":
+            case "new":
                 createReadingTip();
                 break;
         }

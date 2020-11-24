@@ -1,16 +1,18 @@
 package lukuvinkkikirjasto.domain;
 
+import java.util.Objects;
+
 public class ReadingTip {
-    private String title;
+    private String header;
     private String description;
     
     public ReadingTip(String title, String description) {
-        this.title = title;
+        this.header = title;
         this.description = description;
     }
 
     public String getTitle() {
-        return title;
+        return header;
     }
 
     public String getDescription() {
@@ -18,11 +20,40 @@ public class ReadingTip {
     }
 
     public void setTitle(String title) {
-        this.title = title;
+        this.header = title;
     }
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 79 * hash + Objects.hashCode(this.header);
+        hash = 79 * hash + Objects.hashCode(this.description);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final ReadingTip other = (ReadingTip) obj;
+        if (!Objects.equals(this.header, other.header)) {
+            return false;
+        }
+        if (!Objects.equals(this.description, other.description)) {
+            return false;
+        }
+        return true;
     }
     
     
