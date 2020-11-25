@@ -7,6 +7,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
+import lukuvinkkikirjasto.dao.Database;
 import lukuvinkkikirjasto.ui.IO;
 import lukuvinkkikirjasto.ui.SystemIO;
 import lukuvinkkikirjasto.ui.UserInterface;
