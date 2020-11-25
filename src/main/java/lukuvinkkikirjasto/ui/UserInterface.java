@@ -1,8 +1,6 @@
 package lukuvinkkikirjasto.ui;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import lukuvinkkikirjasto.domain.ReadingTip;
 import lukuvinkkikirjasto.domain.ReadingTipService;
 
 public class UserInterface {
@@ -19,15 +17,17 @@ public class UserInterface {
     public UserInterface(IO io, ReadingTipService rtService) {
         this.rtService = rtService;
         this.io = io;
-        commands.put("exit", new Exit(io));
-        unknown = new Unknown(io);
+        commands.put("exit", new Exit(io, rtService));
+        commands.put("new", new CreateReadingTip(io, rtService));
+        commands.put("list", new ListReadingTips(io, rtService));
+        unknown = new Unknown(io, rtService);
     }
-    
+
     public void start() {
         while (true) {
             printCommands();
             String input = io.input();
-            chooseCommand(input);
+            chooseCommand(input).execute();
         }
     }
     
@@ -38,41 +38,7 @@ public class UserInterface {
         }
     }
     
-    private void chooseCommand(String input) {
-        switch (input) {
-            case "exit":
-                System.exit(0);
-                break;
-            case "new":
-                createReadingTip();
-                break;
-            case "list":
-                listReadingTips();
-                break;
-            default:
-                io.output("Unknown command");
-        }
-    }
-    
-    
-    public void createReadingTip() {
-        io.output("Header: ");
-        String header = io.input();
-        io.output("Description: ");
-        String description = io.input();
-        rtService.add(new ReadingTip(header, description));
-    }
-    
-    private void listReadingTips() {
-        printTips(rtService.getTips());
-    }
-
-    private void printTips(ArrayList<ReadingTip> tips) {
-        if (tips.isEmpty()) {
-            io.output("No tips\n");
-        }
-        for (ReadingTip tip : tips) {
-            io.output(tip.toString() + "\n");
-        }
+    private Command chooseCommand(String input) {
+        return commands.getOrDefault(input, unknown);
     }
 }
