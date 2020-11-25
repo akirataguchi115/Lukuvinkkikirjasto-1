@@ -13,7 +13,7 @@ public class ListReadingTipsTest {
 
     IO io;
     ReadingTipService rtService;
-    CreateReadingTip createReadingTip;
+    ListReadingTips listReadingTips;
     ArrayList<ReadingTip> startingTips;
 
     @Before
@@ -24,6 +24,20 @@ public class ListReadingTipsTest {
         startingTips.add(new ReadingTip("title", "description"));
         startingTips.add(new ReadingTip("a", "b"));
         when(rtService.getTips()).thenReturn(startingTips);
-        createReadingTip = new CreateReadingTip(io, rtService);
+        listReadingTips = new ListReadingTips(io, rtService);
+    }
+    
+    @Test
+    public void listReadingTipsGivesData() {
+        listReadingTips.execute();
+        verify(io).output(new ReadingTip("title", "description").toString() + "\n");
+        verify(io).output(new ReadingTip("a", "b").toString() + "\n");
+    }
+    
+    @Test
+    public void listReadingTipsPrintsRightMessageWhenNoTips() {
+        when(rtService.getTips()).thenReturn(new ArrayList<>());
+        listReadingTips.execute();
+        verify(io).output("No tips\n");
     }
 }

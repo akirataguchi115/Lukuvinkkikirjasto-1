@@ -20,8 +20,8 @@ public class CreateReadingTipTest {
         io = mock(IO.class);
         rtService = mock(ReadingTipService.class);
         createReadingTip = new CreateReadingTip(io, rtService);
-        when(io.input()).thenReturn("value");
-        when(io.input()).thenReturn("value2");
+        when(io.input()).thenReturn("value")
+                .thenReturn("value2");
     }
 
     @Test
@@ -29,5 +29,11 @@ public class CreateReadingTipTest {
         createReadingTip.execute();
         verify(io).output("Header: ");
         verify(io).output("Description: ");
+    }
+    
+    @Test
+    public void createReadingTipAddsRightTip() {
+        createReadingTip.execute();
+        verify(rtService, times(1)).add(new ReadingTip("value", "value2"));
     }
 }
