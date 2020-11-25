@@ -38,7 +38,7 @@ public class UserInterface {
         }
     }
     
-    private Command chooseCommand(String input) {
+    public Command chooseCommand(String input) {
         return commands.getOrDefault(input, unknown);
     }
 }
