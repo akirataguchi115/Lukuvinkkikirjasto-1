@@ -16,7 +16,7 @@ public class UnknownTest {
     ReadingTipService rtService;
 
     @Before
-	public void setUp() {
+    public void setUp() {
         io = mock(IO.class);
         rtService = mock(ReadingTipService.class);
         unknown = new Unknown(io, rtService);
