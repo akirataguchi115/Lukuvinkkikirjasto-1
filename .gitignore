@@ -9,3 +9,4 @@ build
 .vscode
 *database.db
 bin
+/nbproject
