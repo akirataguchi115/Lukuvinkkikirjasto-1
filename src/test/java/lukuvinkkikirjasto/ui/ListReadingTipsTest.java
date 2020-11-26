@@ -1,5 +1,6 @@
 package lukuvinkkikirjasto.ui;
 
+import java.sql.SQLException;
 import org.junit.*;
 
 import lukuvinkkikirjasto.domain.ReadingTip;
@@ -17,7 +18,7 @@ public class ListReadingTipsTest {
     ArrayList<ReadingTip> startingTips;
 
     @Before
-    public void setUp() {
+    public void setUp() throws SQLException {
         io = mock(IO.class);
         rtService = mock(ReadingTipService.class);
         startingTips = new ArrayList<>();
@@ -35,7 +36,7 @@ public class ListReadingTipsTest {
     }
     
     @Test
-    public void listReadingTipsPrintsRightMessageWhenNoTips() {
+    public void listReadingTipsPrintsRightMessageWhenNoTips() throws SQLException {
         when(rtService.getTips()).thenReturn(new ArrayList<>());
         listReadingTips.execute();
         verify(io).output("No tips\n");

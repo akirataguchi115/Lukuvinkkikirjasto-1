@@ -1,6 +1,9 @@
 package lukuvinkkikirjasto.ui;
 
+import java.sql.SQLException;
 import java.util.HashMap;
+import lukuvinkkikirjasto.dao.Database;
+import lukuvinkkikirjasto.dao.SQLDatabase;
 import lukuvinkkikirjasto.domain.ReadingTipService;
 
 public class UserInterface {
@@ -14,7 +17,7 @@ public class UserInterface {
     private Command unknown;
     private ReadingTipService rtService;
 
-    public UserInterface(IO io, ReadingTipService rtService) {
+    public UserInterface(IO io, ReadingTipService rtService) throws SQLException {
         this.rtService = rtService;
         this.io = io;
         commands.put("exit", new Exit(io, rtService));

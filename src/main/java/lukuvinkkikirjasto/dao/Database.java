@@ -1,16 +1,22 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package lukuvinkkikirjasto.dao;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.sql.Statement;
+import java.util.ArrayList;
+import lukuvinkkikirjasto.domain.ReadingTip;
 
-// https://tikape-k20.mooc.fi/sqlite-java
-public class Database {
-    Connection db;
-    Statement s;
+/**
+ *
+ * @author tulijoki
+ */
+public interface Database {
+
+    void create(String title, String description) throws SQLException;
+
+    ArrayList<ReadingTip> getTips() throws SQLException;
     
-    public Database() throws SQLException {
-        db = DriverManager.getConnection("jdbc:sqlite:database.db");
-    }
 }

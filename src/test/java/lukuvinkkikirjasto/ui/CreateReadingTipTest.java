@@ -1,5 +1,6 @@
 package lukuvinkkikirjasto.ui;
 
+import java.sql.SQLException;
 import org.junit.*;
 
 import lukuvinkkikirjasto.domain.ReadingTip;
@@ -32,7 +33,7 @@ public class CreateReadingTipTest {
     }
     
     @Test
-    public void createReadingTipAddsRightTip() {
+    public void createReadingTipAddsRightTip() throws SQLException {
         createReadingTip.execute();
         verify(rtService, times(1)).add(new ReadingTip("value", "value2"));
     }

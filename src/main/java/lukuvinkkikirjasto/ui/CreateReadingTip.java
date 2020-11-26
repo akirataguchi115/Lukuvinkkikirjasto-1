@@ -1,5 +1,8 @@
 package lukuvinkkikirjasto.ui;
 
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import lukuvinkkikirjasto.domain.ReadingTip;
 import lukuvinkkikirjasto.domain.ReadingTipService;
 
@@ -13,6 +16,10 @@ public class CreateReadingTip extends Command {
         String header = io.input();
         io.output("Description: ");
         String description = io.input();
-        rtService.add(new ReadingTip(header, description));
+        try {
+            rtService.add(new ReadingTip(header, description));
+        } catch (SQLException ex) {
+            Logger.getLogger(CreateReadingTip.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }
