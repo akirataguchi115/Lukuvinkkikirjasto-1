@@ -14,8 +14,8 @@ public class SQLDatabase implements Database {
     Connection db;
     Statement s;
     
-    public SQLDatabase() throws SQLException {
-        db = DriverManager.getConnection("jdbc:sqlite:database.db");
+    public SQLDatabase(String databaseName) throws SQLException {
+        db = DriverManager.getConnection("jdbc:sqlite:"+databaseName);
         Statement s = db.createStatement();
         s.execute("CREATE TABLE IF NOT EXISTS Tips (id INTEGER PRIMARY KEY AUTOINCREMENT, title VARCHAR NOT NULL, description VARCHAR)");
     }
