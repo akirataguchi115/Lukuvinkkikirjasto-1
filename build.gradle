@@ -2,6 +2,7 @@ plugins {
     id 'java'
     id 'application'
     id 'jacoco'
+    id "com.github.johnrengelman.shadow" version "6.1.0"
 }
 
 repositories {
@@ -19,7 +20,7 @@ dependencies {
 }
 
 application {
-    mainClass = 'lukuvinkkikirjasto.Main'
+    mainClassName = 'lukuvinkkikirjasto.Main'
 }
 
 run {
@@ -37,3 +38,10 @@ jacocoTestReport {
         }))
     }
 }
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'lukuvinkkikirjasto.Main'
+    }
+}
+
