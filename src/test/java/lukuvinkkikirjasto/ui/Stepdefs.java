@@ -12,28 +12,31 @@ import lukuvinkkikirjasto.domain.ReadingTip;
 import lukuvinkkikirjasto.domain.ReadingTipService;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+
 
 public class Stepdefs {
         
-    private HashMap<String, Command> commands = new HashMap<String, Command>();
-    IO io = new SystemIO();
+    SystemIO io;
     Database fakeDatabase = new FakeDatabase();
     ReadingTipService rtService;
     UserInterface ui;
 
     public Stepdefs() throws SQLException {
+        io = mock(SystemIO.class);
         rtService = new ReadingTipService(fakeDatabase);
         ui = new UserInterface(io, rtService);
     }
     
     @Given("command {string} is selected")
     public void commandIsSelected(String string) {
-        
+        ui.chooseCommand(string).execute();
     }
 
     @Then("{string} message is shown")
     public void messageIsShown(String message) {
-        
+        verify(io).output(message + "\n");
     }
     
     @When("Header {string} and description {string} are given.")
