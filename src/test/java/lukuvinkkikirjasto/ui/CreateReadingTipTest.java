@@ -35,6 +35,6 @@ public class CreateReadingTipTest {
     @Test
     public void createReadingTipAddsRightTip() throws SQLException {
         createReadingTip.execute();
-        verify(rtService, times(1)).add(new ReadingTip("value", "value2"));
+        verify(rtService, times(1)).add("value", "value2");
     }
 }

@@ -17,7 +17,7 @@ public class CreateReadingTip extends Command {
         io.output("Description: ");
         String description = io.input();
         try {
-            rtService.add(new ReadingTip(header, description));
+            rtService.add(header, description);
         } catch (SQLException ex) {
             Logger.getLogger(CreateReadingTip.class.getName()).log(Level.SEVERE, null, ex);
         }

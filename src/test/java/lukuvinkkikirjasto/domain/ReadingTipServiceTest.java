@@ -15,15 +15,13 @@ public class ReadingTipServiceTest {
     
     @Before
     public void setUp() throws SQLException {
-        this.fakeDatabase = new FakeDatabase();
+        this.fakeDatabase = mock(Database.class);
         rtService = new ReadingTipService(fakeDatabase);
     }
-    
+
     @Test
-    public void addingReadingTipTest() throws SQLException {
-        ReadingTip rt = new ReadingTip("test", "asd");
-        rtService.add(rt);
-        assertEquals(rtService.getTips().size(), 1);
-        assertEquals(rtService.getTips().get(0), rt);
+    public void addAddsReadingTipToDatabase() throws SQLException {
+        rtService.add("test", "asd");
+        verify(fakeDatabase).create("test", "asd");
     }
 }

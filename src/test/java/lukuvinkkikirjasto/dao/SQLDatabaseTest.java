@@ -30,9 +30,7 @@ public class SQLDatabaseTest {
     @Test
     public void readingTipIsCreatedAndIsIncludedInTheList() throws SQLException {
         database.create("Test Item", "Test description");
-        assertEquals(database.getTips().get(0), new ReadingTip("Test Item", "Test description"));
-        
+        assertEquals(database.getTips().get(0).getTitle(), "Test Item");
+        assertEquals(database.getTips().get(0).getDescription(), "Test description");
     }
-
-
 }

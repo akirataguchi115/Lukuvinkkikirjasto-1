@@ -3,10 +3,12 @@ package lukuvinkkikirjasto.domain;
 import java.util.Objects;
 
 public class ReadingTip {
+    private int id;
     private String header;
     private String description;
     
-    public ReadingTip(String title, String description) {
+    public ReadingTip(int id, String title, String description) {
+        this.id = id;
         this.header = title;
         this.description = description;
     }
@@ -26,8 +28,6 @@ public class ReadingTip {
     public void setDescription(String description) {
         this.description = description;
     }
-
-
 
     @Override
     public boolean equals(Object obj) {
@@ -52,7 +52,7 @@ public class ReadingTip {
     
     @Override
     public String toString() {
-        return ("Header: " + this.header + "\nDescription: " + this.description);
+        return ("ID: " + this.id + "\nHeader: " + this.header + "\nDescription: " + this.description);
     }
     
 }

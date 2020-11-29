@@ -13,13 +13,13 @@ import lukuvinkkikirjasto.domain.ReadingTip;
 public class SQLDatabase implements Database {
     Connection db;
     Statement s;
-    
+
     public SQLDatabase(String databaseName) throws SQLException {
         db = DriverManager.getConnection("jdbc:sqlite:"+databaseName);
         Statement s = db.createStatement();
         s.execute("CREATE TABLE IF NOT EXISTS Tips (id INTEGER PRIMARY KEY AUTOINCREMENT, title VARCHAR NOT NULL, description VARCHAR)");
     }
-    
+
     @Override
     public void create(String title, String description) throws SQLException {
         PreparedStatement p = db.prepareStatement("INSERT INTO Tips(title, description) VALUES (?, ?)");
@@ -28,16 +28,45 @@ public class SQLDatabase implements Database {
         p.executeUpdate();
         p.close();
     }
-    
+
     @Override
     public ArrayList<ReadingTip> getTips() throws SQLException {
         ArrayList<ReadingTip> tipList = new ArrayList<>();
         PreparedStatement p = db.prepareStatement("SELECT * FROM Tips");
         ResultSet r = p.executeQuery();
         while (r.next()) {
-            tipList.add(new ReadingTip(r.getString("title"), r.getString("description")));
+            tipList.add(new ReadingTip(
+                r.getInt("id"),
+                r.getString("title"),
+                r.getString("description")
+                ));
         }
         return tipList;
     }
-    
+
+    @Override
+    public void editHeader(int id, String header) throws SQLException {
+        PreparedStatement statement = db.prepareStatement("UPDATE Tips SET title=? Where id=?");
+        statement.setString(1, header);
+        statement.setInt(2, id);
+        statement.executeUpdate();
+        statement.close();
+    }
+
+    @Override
+    public void editDescription(int id, String description) throws SQLException {
+        PreparedStatement statement = db.prepareStatement("UPDATE Tips SET description=? Where id=?");
+        statement.setString(1, description);
+        statement.setInt(2, id);
+        statement.executeUpdate();
+        statement.close();
+    }
+
+    @Override
+    public Boolean containsId(int id) throws SQLException {
+        PreparedStatement p = db.prepareStatement("SELECT id FROM Tips WHERE id=?");
+        ResultSet r = p.executeQuery();
+        return r.next();
+    }
+
 }

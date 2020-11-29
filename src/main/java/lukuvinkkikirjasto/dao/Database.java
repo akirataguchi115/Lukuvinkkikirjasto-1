@@ -19,4 +19,9 @@ public interface Database {
 
     ArrayList<ReadingTip> getTips() throws SQLException;
     
+    void editHeader(int id, String header) throws SQLException;
+
+    void editDescription(int id, String description) throws SQLException;
+
+    Boolean containsId(int id) throws SQLException;
 }
