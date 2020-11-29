@@ -65,6 +65,7 @@ public class SQLDatabase implements Database {
     @Override
     public Boolean containsId(int id) throws SQLException {
         PreparedStatement p = db.prepareStatement("SELECT id FROM Tips WHERE id=?");
+        p.setInt(1, id);
         ResultSet r = p.executeQuery();
         return r.next();
     }
