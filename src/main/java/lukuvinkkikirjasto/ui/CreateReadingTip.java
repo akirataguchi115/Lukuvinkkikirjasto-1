@@ -19,7 +19,7 @@ public class CreateReadingTip extends Command {
         try {
             rtService.add(header, description);
         } catch (SQLException ex) {
-            Logger.getLogger(CreateReadingTip.class.getName()).log(Level.SEVERE, null, ex);
+            io.output("Creation failed. Please try again.");
         }
     }
 }

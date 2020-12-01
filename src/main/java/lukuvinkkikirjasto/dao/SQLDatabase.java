@@ -70,4 +70,14 @@ public class SQLDatabase implements Database {
         return r.next();
     }
 
+    @Override
+    public void delete(int id) throws SQLException {
+        PreparedStatement p = db.prepareStatement("DELETE FROM Tips WHERE id=?");
+        p.setInt(1, id);
+        p.executeUpdate();
+        p.close();
+    }
+    
+    
+
 }

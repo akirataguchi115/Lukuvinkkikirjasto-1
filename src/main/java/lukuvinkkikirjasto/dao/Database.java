@@ -16,4 +16,6 @@ public interface Database {
     void editDescription(int id, String description) throws SQLException;
 
     Boolean containsId(int id) throws SQLException;
+    
+    void delete(int id) throws SQLException;
 }

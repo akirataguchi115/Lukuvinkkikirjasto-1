@@ -1,6 +1,7 @@
 package lukuvinkkikirjasto.domain;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import lukuvinkkikirjasto.dao.Database;
 import lukuvinkkikirjasto.ui.IO;
 import lukuvinkkikirjasto.ui.Unknown;
@@ -23,5 +24,11 @@ public class ReadingTipServiceTest {
     public void addAddsReadingTipToDatabase() throws SQLException {
         rtService.add("test", "asd");
         verify(fakeDatabase).create("test", "asd");
+    }
+    
+    @Test
+    public void deleteDeletesReadingTipFromDatabase() throws SQLException {
+        rtService.delete(1);
+        verify(fakeDatabase).delete(1);
     }
 }

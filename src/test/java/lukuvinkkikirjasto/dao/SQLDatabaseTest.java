@@ -6,9 +6,11 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import lukuvinkkikirjasto.domain.ReadingTip;
 import org.junit.*;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 
 public class SQLDatabaseTest {
@@ -32,5 +34,15 @@ public class SQLDatabaseTest {
         database.create("Test Item", "Test description");
         assertEquals(database.getTips().get(0).getTitle(), "Test Item");
         assertEquals(database.getTips().get(0).getDescription(), "Test description");
+    }
+    
+    @Test
+    public void readingIsDeletedFromDatabase() throws SQLException {
+        database.create("Test Item", "Test description");
+        ArrayList<ReadingTip> tipList = database.getTips();
+        assertTrue(tipList.size() == 1);
+        database.delete(1);
+        tipList = database.getTips();
+        assertTrue(tipList.isEmpty());
     }
 }
