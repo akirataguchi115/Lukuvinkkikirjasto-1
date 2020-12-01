@@ -6,11 +6,13 @@ public class ReadingTip {
     private int id;
     private String header;
     private String description;
+    private boolean read;
     
     public ReadingTip(int id, String title, String description) {
         this.id = id;
         this.header = title;
         this.description = description;
+        this.read = false;
     }
 
     public String getTitle() {

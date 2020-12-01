@@ -37,10 +37,18 @@ public class DeleteReadingTipTest {
     
     @Test
     public void deleteReadingTipDeletesRightTip() throws SQLException {
-        when(io.input()).thenReturn("1");
+        when(io.input()).thenReturn("1").thenReturn("y");
         when(rtService.tipExists(1)).thenReturn(true);
         delete.execute();
         verify(rtService, times(1)).delete(1);
+    }
+    
+    @Test
+    public void doesNotDeleteIfConfirmationIsNotGiven() throws SQLException {
+        when(io.input()).thenReturn("1").thenReturn("n");
+        when(rtService.tipExists(1)).thenReturn(true);
+        delete.execute();
+        verify(rtService, times(0)).delete(1);
     }
     
     @Test

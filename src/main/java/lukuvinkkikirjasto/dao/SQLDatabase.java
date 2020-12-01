@@ -17,14 +17,15 @@ public class SQLDatabase implements Database {
     public SQLDatabase(String databaseName) throws SQLException {
         db = DriverManager.getConnection("jdbc:sqlite:"+databaseName);
         Statement s = db.createStatement();
-        s.execute("CREATE TABLE IF NOT EXISTS Tips (id INTEGER PRIMARY KEY AUTOINCREMENT, title VARCHAR NOT NULL, description VARCHAR)");
+        s.execute("CREATE TABLE IF NOT EXISTS Tips (id INTEGER PRIMARY KEY AUTOINCREMENT, title VARCHAR NOT NULL, description VARCHAR, read BOOLEAN)");
     }
 
     @Override
     public void create(String title, String description) throws SQLException {
-        PreparedStatement p = db.prepareStatement("INSERT INTO Tips(title, description) VALUES (?, ?)");
+        PreparedStatement p = db.prepareStatement("INSERT INTO Tips(title, description, read) VALUES (?, ?, ?)");
         p.setString(1, title);
         p.setString(2, description);
+        p.setBoolean(3, false);
         p.executeUpdate();
         p.close();
     }
@@ -77,7 +78,14 @@ public class SQLDatabase implements Database {
         p.executeUpdate();
         p.close();
     }
-    
-    
+
+    @Override
+    public void setReadStatusToTrue(int id) throws SQLException {
+        PreparedStatement p = db.prepareStatement("UPDATE Tips SET read=? Where id=?");
+        p.setBoolean(1, true);
+        p.setInt(2, id);
+        p.executeUpdate();
+        p.close();
+    }
 
 }

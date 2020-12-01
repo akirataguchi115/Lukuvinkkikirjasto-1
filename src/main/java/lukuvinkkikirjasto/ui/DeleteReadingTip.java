@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package lukuvinkkikirjasto.ui;
 
 import java.sql.SQLException;
@@ -10,10 +6,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import lukuvinkkikirjasto.domain.ReadingTipService;
 
-/**
- *
- * @author tulijoki
- */
 public class DeleteReadingTip extends Command {
 
     public DeleteReadingTip(IO io, ReadingTipService rtService) {
@@ -35,10 +27,14 @@ public class DeleteReadingTip extends Command {
             io.output("Id must be a number.");
             return;
         }
-        try {
-            rtService.delete(id);
-        } catch (SQLException ex) {
-            io.output("Deletion failed. Please try again.");
+        io.output("Are you sure? Enter 'y' to confirm.");
+        input = io.input();
+        if (input.equals("y")) {
+            try {
+                rtService.delete(id);
+            } catch (SQLException ex) {
+                io.output("Deletion failed. Please try again.");
+            }
         }
     }    
 }

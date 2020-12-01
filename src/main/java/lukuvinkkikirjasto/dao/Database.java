@@ -18,4 +18,6 @@ public interface Database {
     Boolean containsId(int id) throws SQLException;
     
     void delete(int id) throws SQLException;
+    
+    void setReadStatusToTrue(int id) throws SQLException;
 }
