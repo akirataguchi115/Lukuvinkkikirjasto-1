@@ -69,4 +69,14 @@ public class Stepdefs {
     public void tipWithIdAndHeaderAndDescriptionIsListed(String string, String string2) throws SQLException {
         verify(io).output("ID: " + anyString() + "\n" + "Header: " + string + "\n" + "Description: " + string2 + "\n");
     }
+    
+    @When("id {int} and new header {string} are given")
+    public void idAndNewHeaderAreGiven(int id, String header) throws SQLException {
+        rtService.editHeader(id, header);
+    }
+    
+    @Then("tip with id {int} has new header {string}")
+    public void tipWithIdHasNewHeader(int id, String header) throws SQLException {
+        verify(fakeDatabase).editHeader(eq(id), eq(header));
+    }
 }
