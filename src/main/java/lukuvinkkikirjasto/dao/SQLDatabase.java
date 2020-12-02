@@ -1,11 +1,6 @@
 package lukuvinkkikirjasto.dao;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import lukuvinkkikirjasto.domain.ReadingTip;
 
@@ -87,6 +82,23 @@ public class SQLDatabase implements Database {
         p.setInt(2, id);
         p.executeUpdate();
         p.close();
+    }
+
+    @Override
+    public ArrayList<ReadingTip> getReadOrUnreadTips(boolean read) throws SQLException {
+        ArrayList<ReadingTip> tipList = new ArrayList<>();
+        PreparedStatement p = db.prepareStatement("SELECT * FROM TIPS WHERE read=?");
+        p.setBoolean(1, read);
+        ResultSet r = p.executeQuery();
+        while (r.next()) {
+            tipList.add(new ReadingTip(
+                    r.getInt("id"),
+                    r.getString("title"),
+                    r.getString("description"),
+                    r.getBoolean("read")
+            ));
+        }
+        return tipList;
     }
 
 }

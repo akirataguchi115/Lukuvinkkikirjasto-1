@@ -10,7 +10,7 @@ public class UserInterface {
     private String[] commandDescriptions = {
         "exit - closes the application",
         "new  - add a new reading tip",
-        "list - lists all reading tips",
+        "list - lists reading tips by choice",
         "edit header - edit header of a tip",
         "edit desc - edit description of a tip",
         "mark as read - mark a reading tip as read",

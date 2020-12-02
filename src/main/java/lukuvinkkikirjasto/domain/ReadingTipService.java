@@ -30,6 +30,10 @@ public class ReadingTipService {
     public ArrayList<ReadingTip> getTips() throws SQLException {
         return database.getTips();
     }
+
+    public ArrayList<ReadingTip> getReadOrUnreadTips(boolean read) throws SQLException {
+        return database.getReadOrUnreadTips(read);
+    }
     
     public void delete(int id) throws SQLException {
         database.delete(id);

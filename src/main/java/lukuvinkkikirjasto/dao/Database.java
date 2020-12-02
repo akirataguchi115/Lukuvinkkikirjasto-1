@@ -20,4 +20,6 @@ public interface Database {
     void delete(int id) throws SQLException;
     
     void setReadStatusToTrue(int id) throws SQLException;
+
+    ArrayList<ReadingTip> getReadOrUnreadTips(boolean read) throws SQLException;
 }

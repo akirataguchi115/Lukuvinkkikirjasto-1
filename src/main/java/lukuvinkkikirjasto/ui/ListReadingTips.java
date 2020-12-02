@@ -15,7 +15,17 @@ public class ListReadingTips extends Command {
 
     public void execute() {
         try {
-            ArrayList<ReadingTip> tips = rtService.getTips();
+            ArrayList<ReadingTip> tips = new ArrayList<>();
+            io.output("Which tips to list? Type unread/read (default: all)");
+            String input = io.input();
+            if (input.equals("unread")) {
+                tips = rtService.getReadOrUnreadTips(false);
+            } else if (input.equals("read")) {
+                tips = rtService.getReadOrUnreadTips(true);
+            } else {
+                tips = rtService.getTips();
+            }
+
             if (tips.isEmpty()) {
                 io.output("No tips\n");
             }
