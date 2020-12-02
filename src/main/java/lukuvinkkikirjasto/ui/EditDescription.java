@@ -15,21 +15,21 @@ public class EditDescription extends Command {
         int id;
         try {
             id = Integer.valueOf(input);
-            if (!rtService.tipExists(id)) {
-                io.output("Could not find responding tip.");
-                return;
-            }
         } catch (Exception e) {
             io.output("Id must be a number.");
             return;
         }
 
-        io.output("New Description:");
-        String newDesc = io.input();
         try {
+            if (!rtService.tipExists(id)) {
+                io.output("Could not find responding tip.");
+                return;
+            }
+            io.output("New Description:");
+            String newDesc = io.input();
             rtService.editDescription(id, newDesc);
         } catch (SQLException e) {
-            io.output("Could not find tip in database.");
+            io.output("Problem accessing database.");
         }
     }
 }

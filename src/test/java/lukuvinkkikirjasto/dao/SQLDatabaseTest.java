@@ -40,9 +40,9 @@ public class SQLDatabaseTest {
     public void readingIsDeletedFromDatabase() throws SQLException {
         database.create("Test Item", "Test description");
         ArrayList<ReadingTip> tipList = database.getTips();
-        assertTrue(tipList.size() == 1);
+        assertEquals(1, tipList.size());
         database.delete(1);
         tipList = database.getTips();
-        assertTrue(tipList.isEmpty());
+        assertEquals(0, tipList.size());
     }
 }
