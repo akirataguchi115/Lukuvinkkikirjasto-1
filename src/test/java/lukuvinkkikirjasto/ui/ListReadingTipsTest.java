@@ -30,6 +30,7 @@ public class ListReadingTipsTest {
     
     @Test
     public void listReadingTipsGivesData() {
+        when(io.input()).thenReturn("all");
         listReadingTips.execute();
         verify(io).output(new ReadingTip(1, "title", "description").toString() + "\n");
         verify(io).output(new ReadingTip(2, "a", "b").toString() + "\n");
@@ -38,6 +39,7 @@ public class ListReadingTipsTest {
     @Test
     public void listReadingTipsPrintsRightMessageWhenNoTips() throws SQLException {
         when(rtService.getTips()).thenReturn(new ArrayList<>());
+        when(io.input()).thenReturn("all");
         listReadingTips.execute();
         verify(io).output("No tips\n");
     }
