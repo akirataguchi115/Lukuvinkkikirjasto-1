@@ -15,7 +15,7 @@ public class ReadingTip {
         this.read = false;
     }
 
-    public String getTitle() {
+    public String getHeader() {
         return header;
     }
 
@@ -29,6 +29,10 @@ public class ReadingTip {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public int getId() {
+        return this.id;
     }
 
     @Override

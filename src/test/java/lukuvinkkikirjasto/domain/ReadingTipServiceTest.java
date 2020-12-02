@@ -25,6 +25,18 @@ public class ReadingTipServiceTest {
         rtService.add("test", "asd");
         verify(fakeDatabase).create("test", "asd");
     }
+
+    @Test
+    public void onEditHeaderCallsDatabaseWithRightParameters() throws SQLException {
+        rtService.editHeader(1, "header");
+        verify(fakeDatabase).editHeader(1, "header");
+    }
+
+    @Test
+    public void onEditDescriptionCallsDatabaseWithRightParameters() throws SQLException {
+        rtService.editDescription(1, "desc");
+        verify(fakeDatabase).editDescription(1, "desc");
+    }
     
     @Test
     public void deleteDeletesReadingTipFromDatabase() throws SQLException {

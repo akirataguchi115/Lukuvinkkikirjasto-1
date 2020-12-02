@@ -32,8 +32,24 @@ public class SQLDatabaseTest {
     @Test
     public void readingTipIsCreatedAndIsIncludedInTheList() throws SQLException {
         database.create("Test Item", "Test description");
-        assertEquals(database.getTips().get(0).getTitle(), "Test Item");
+        assertEquals(database.getTips().get(0).getHeader(), "Test Item");
         assertEquals(database.getTips().get(0).getDescription(), "Test description");
+    }
+
+    @Test
+    public void editHeaderChangesAreSaved() throws SQLException {
+        database.create("Header", "Desc");
+        int id = database.getTips().get(0).getId();
+        database.editHeader(id, "Edited header");
+        assertEquals("Edited header", database.getTips().get(0).getHeader());
+    }
+
+    @Test
+    public void editDescriptionChangesAreSaved() throws SQLException {
+        database.create("Header", "Desc");
+        int id = database.getTips().get(0).getId();
+        database.editDescription(id, "Edited description");
+        assertEquals("Edited description", database.getTips().get(0).getDescription());
     }
     
     @Test
