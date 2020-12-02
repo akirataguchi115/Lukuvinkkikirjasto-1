@@ -34,4 +34,8 @@ public class ReadingTipService {
     public void delete(int id) throws SQLException {
         database.delete(id);
     }
+    
+    public void setReadStatusToTrue(int id) throws SQLException {
+        database.setReadStatusToTrue(id);
+    }
 }

@@ -22,6 +22,14 @@ public class ReadingTip {
     public String getDescription() {
         return description;
     }
+    
+    public boolean getReadStatus() {
+        return read;
+    }
+    
+    public int getId() {
+        return this.id;
+    }
 
     public void setTitle(String title) {
         this.header = title;
@@ -30,9 +38,9 @@ public class ReadingTip {
     public void setDescription(String description) {
         this.description = description;
     }
-
-    public int getId() {
-        return this.id;
+    
+    public void setReadStatus(Boolean read) {
+        this.read = read;
     }
 
     @Override

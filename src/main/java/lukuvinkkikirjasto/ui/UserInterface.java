@@ -13,6 +13,7 @@ public class UserInterface {
         "list - lists all reading tips",
         "edit header - edit header of a tip",
         "edit desc - edit description of a tip",
+        "mark as read - mark a reading tip as read",
         "delete - delete a reading tip",
     };
     private IO io;
@@ -29,6 +30,7 @@ public class UserInterface {
         commands.put("edit header", new EditHeader(io, rtService));
         commands.put("edit desc", new EditDescription(io, rtService));
         commands.put("delete", new DeleteReadingTip(io, rtService));
+        commands.put("mark as read", new MarkAsRead(io, rtService));
         unknown = new Unknown(io, rtService);
     }
 
