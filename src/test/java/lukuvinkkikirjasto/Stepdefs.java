@@ -17,6 +17,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -40,7 +41,13 @@ public class Stepdefs {
     public void commandIsSelected(String string) {
         ui.chooseCommand(string).execute();
     }
-
+    
+    @Given("command {string} is selected and option {string} is given")
+    public void commandIsSelected(String string, String option) {
+        when(io.input()).thenReturn(option);
+        ui.chooseCommand(string).execute();
+    }
+    
     @Then("{string} message is shown")
     public void messageIsShown(String message) {
         verify(io).output(message + "\n");
@@ -64,10 +71,11 @@ public class Stepdefs {
         list.add(new ReadingTip(list.size()+1, string, string2));
         when(fakeDatabase.getTips()).thenReturn(list);
     }
-
+    
     @Then("tip with id, header {string} and description {string} is listed")
     public void tipWithIdAndHeaderAndDescriptionIsListed(String string, String string2) throws SQLException {
-        verify(io).output("ID: " + anyString() + "\n" + "Header: " + string + "\n" + "Description: " + string2 + "\n");
+        verify(io, times(2)).output("Which tips to list? Type unread/read (default: all)" 
+                + "ID: " + anyString() + "\n" + "Header: " + string + "\n" + "Description: " + string2 + "\n");
     }
     
     @When("id {int} and new header {string} are given")
