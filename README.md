@@ -1,5 +1,6 @@
 # Lukuvinkkikirjasto - OhTu Ryhmä 18
 ![Github Actions](https://github.com/H4m5t3r/Lukuvinkkikirjasto/workflows/Java%20CI%20with%20Gradle/badge.svg)
+[![codecov](https://codecov.io/gh/H4m5t3r/Lukuvinkkikirjasto/branch/main/graph/badge.svg?token=0C5K8PV1M7)](https://codecov.io/gh/H4m5t3r/Lukuvinkkikirjasto)
 
 ## Backlogs
 [Backlog and sprint backlogs](https://docs.google.com/spreadsheets/d/1Rs7nCo8a6hoiPlCnYz-FaLVGR1mB95siMJL3hFFB-oc)
