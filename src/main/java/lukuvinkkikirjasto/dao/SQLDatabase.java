@@ -39,7 +39,8 @@ public class SQLDatabase implements Database {
             tipList.add(new ReadingTip(
                 r.getInt("id"),
                 r.getString("title"),
-                r.getString("description")
+                r.getString("description"),
+                r.getBoolean("read")
                 ));
         }
         return tipList;

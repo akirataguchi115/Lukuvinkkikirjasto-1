@@ -8,11 +8,15 @@ public class ReadingTip {
     private String description;
     private boolean read;
     
-    public ReadingTip(int id, String title, String description) {
+    public ReadingTip(int id, String title, String description, boolean read) {
         this.id = id;
         this.header = title;
         this.description = description;
-        this.read = false;
+        this.read = read;
+    }
+
+    public ReadingTip(int id, String title, String description) {
+        this(id, title, description, false);
     }
 
     public String getHeader() {
