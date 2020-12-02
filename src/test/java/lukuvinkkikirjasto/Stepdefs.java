@@ -1,4 +1,4 @@
-package lukuvinkkikirjasto.ui;
+package lukuvinkkikirjasto;
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -10,6 +10,9 @@ import java.util.List;
 import lukuvinkkikirjasto.dao.Database;
 import lukuvinkkikirjasto.domain.ReadingTip;
 import lukuvinkkikirjasto.domain.ReadingTipService;
+import lukuvinkkikirjasto.ui.SystemIO;
+import lukuvinkkikirjasto.ui.UserInterface;
+
 import org.junit.Test;
 import static org.junit.Assert.*;
 import static org.mockito.ArgumentMatchers.*;

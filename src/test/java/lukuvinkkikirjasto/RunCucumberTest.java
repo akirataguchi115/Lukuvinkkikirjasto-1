@@ -1,4 +1,4 @@
-package lukuvinkkikirjasto.ui;
+package lukuvinkkikirjasto;
 
 import io.cucumber.junit.Cucumber;
 import io.cucumber.junit.CucumberOptions;
