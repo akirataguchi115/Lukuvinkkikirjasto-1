@@ -8,8 +8,8 @@ import java.util.logging.Logger;
 import lukuvinkkikirjasto.domain.ReadingTip;
 import lukuvinkkikirjasto.domain.ReadingTipService;
 
-public class Filter extends Command {
-    public Filter(IO io, ReadingTipService rtService) {
+public class Search extends Command {
+    public Search(IO io, ReadingTipService rtService) {
         super(io, rtService);
     }
 

@@ -2,8 +2,7 @@ package lukuvinkkikirjasto.ui;
 
 import java.sql.SQLException;
 import java.util.HashMap;
-import lukuvinkkikirjasto.dao.Database;
-import lukuvinkkikirjasto.dao.SQLDatabase;
+
 import lukuvinkkikirjasto.domain.ReadingTipService;
 
 public class UserInterface {
@@ -11,7 +10,7 @@ public class UserInterface {
         "exit         - closes the application",
         "new          - add a new reading tip",
         "list         - lists reading tips by choice",
-        "filter       - search from tips by header or description",
+        "search       - search from tips by header or description",
         "edit header  - edit header of a tip",
         "edit desc    - edit description of a tip",
         "mark as read - mark a reading tip as read",
@@ -28,7 +27,7 @@ public class UserInterface {
         commands.put("exit", new Exit(io, rtService));
         commands.put("new", new CreateReadingTip(io, rtService));
         commands.put("list", new ListReadingTips(io, rtService));
-        commands.put("filter", new Filter(io, rtService));
+        commands.put("search", new Search(io, rtService));
         commands.put("edit header", new EditHeader(io, rtService));
         commands.put("edit desc", new EditDescription(io, rtService));
         commands.put("delete", new DeleteReadingTip(io, rtService));
