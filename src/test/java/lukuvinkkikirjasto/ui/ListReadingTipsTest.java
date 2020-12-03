@@ -54,6 +54,12 @@ public class ListReadingTipsTest {
         listReadingTips.execute();
         verify(rtService).getReadOrUnreadTips(false);
     }
-
+    
+    @Test
+    public void readTipsListingCallsCorrectMethod() throws SQLException {
+        when(io.input()).thenReturn("read");
+        listReadingTips.execute();
+        verify(rtService).getReadOrUnreadTips(true);
+    }
 
 }
