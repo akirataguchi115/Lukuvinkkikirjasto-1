@@ -34,6 +34,10 @@ public class ReadingTipService {
     public ArrayList<ReadingTip> getReadOrUnreadTips(boolean read) throws SQLException {
         return database.getReadOrUnreadTips(read);
     }
+
+    public ArrayList<ReadingTip> searchReadingTips(String search) throws SQLException {
+        return database.searchFromTips(search);
+    }
     
     public void delete(int id) throws SQLException {
         database.delete(id);
