@@ -41,6 +41,6 @@ public class ListReadingTipsTest {
         when(rtService.getTips()).thenReturn(new ArrayList<>());
         when(io.input()).thenReturn("all");
         listReadingTips.execute();
-        verify(io).output("No tips\n");
+        verify(io).output("No tips");
     }
 }

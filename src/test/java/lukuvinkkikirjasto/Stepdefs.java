@@ -5,16 +5,12 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import lukuvinkkikirjasto.dao.Database;
 import lukuvinkkikirjasto.domain.ReadingTip;
 import lukuvinkkikirjasto.domain.ReadingTipService;
 import lukuvinkkikirjasto.ui.SystemIO;
 import lukuvinkkikirjasto.ui.UserInterface;
-
-import org.junit.Test;
-import static org.junit.Assert.*;
 import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
@@ -41,26 +37,25 @@ public class Stepdefs {
     public void commandIsSelected(String string) {
         ui.chooseCommand(string).execute();
     }
-    
+
     @Given("command {string} is selected and option {string} is given")
     public void commandIsSelected(String string, String option) {
         when(io.input()).thenReturn(option);
         ui.chooseCommand(string).execute();
     }
-    
-    @Then("{string} message is shown")
+
+    @Then("message {string} is shown")
     public void messageIsShown(String message) {
-        verify(io).output(message + "\n");
+        verify(io).output(message);
     }
 
-    @When("Header {string} and description {string} are given.")
+    @When("header {string} and description {string} are given")
     public void headerAndDescriptionAreGiven(String header, String description) throws SQLException {
         rtService.add(header, description);
     }
 
-    @Then("The book {string} is added.")
+    @Then("the book {string} is added.")
     public void theBookIsAdded(String header) throws SQLException {
-        List<ReadingTip> tipList = rtService.getTips();
         verify(fakeDatabase).create(eq(header), anyString());
     }
 
@@ -71,20 +66,40 @@ public class Stepdefs {
         list.add(new ReadingTip(list.size()+1, string, string2));
         when(fakeDatabase.getTips()).thenReturn(list);
     }
-    
+
     @Then("tip with id, header {string} and description {string} is listed")
     public void tipWithIdAndHeaderAndDescriptionIsListed(String string, String string2) throws SQLException {
         verify(io, times(2)).output("Which tips to list? Type unread/read (default: all)" 
                 + "ID: " + anyString() + "\n" + "Header: " + string + "\n" + "Description: " + string2 + "\n");
     }
-    
+
     @When("id {int} and new header {string} are given")
     public void idAndNewHeaderAreGiven(int id, String header) throws SQLException {
         rtService.editHeader(id, header);
     }
-    
-    @Then("tip with id {int} has new header {string}")
-    public void tipWithIdHasNewHeader(int id, String header) throws SQLException {
+
+    @Then("tip with id {int} has its header changed to {string}")
+    public void tipWithIdHasItsHeaderChanged(int id, String header) throws SQLException {
         verify(fakeDatabase).editHeader(eq(id), eq(header));
+    }
+
+    @When("id {int} and new description {string} are given")
+    public void idAndNewDescriptionAreGiven(int id, String description) throws SQLException {
+        rtService.editDescription(id, description);
+    }
+
+    @Then("tip with id {int} has its description changed to {string}")
+    public void tipdWithIdHasItsDescriptionChanged(int id, String description) throws SQLException {
+        verify(fakeDatabase).editDescription(id, description);
+    }
+
+    @Given("input {string} will be given") 
+    public void inputGiven(String input) {
+        when(io.input()).thenReturn(input); 
+    }
+
+    @Then("header editor is not accessed")
+    public void headerEditorNotAccessed() throws SQLException {
+        verify(fakeDatabase, times(0)).editHeader(anyInt(), anyString());
     }
 }

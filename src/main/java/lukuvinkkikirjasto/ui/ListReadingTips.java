@@ -27,7 +27,7 @@ public class ListReadingTips extends Command {
             }
 
             if (tips.isEmpty()) {
-                io.output("No tips\n");
+                io.output("No tips");
             }
             for (ReadingTip tip : tips) {
                 io.output(tip.toString() + "\n");
