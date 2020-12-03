@@ -15,7 +15,7 @@ public class ListReadingTips extends Command {
 
     public void execute() {
         try {
-            ArrayList<ReadingTip> tips = new ArrayList<>();
+            ArrayList<ReadingTip> tips = null;
             io.output("Which tips to list? Type unread/read (default: all)");
             String input = io.input();
             if (input.equals("unread")) {

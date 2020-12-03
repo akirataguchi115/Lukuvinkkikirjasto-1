@@ -1,6 +1,9 @@
 package lukuvinkkikirjasto.ui;
 
 import java.sql.SQLException;
+
+import lukuvinkkikirjasto.dao.Database;
+import lukuvinkkikirjasto.dao.SQLDatabase;
 import org.junit.*;
 
 import lukuvinkkikirjasto.domain.ReadingTip;
@@ -25,6 +28,7 @@ public class ListReadingTipsTest {
         startingTips.add(new ReadingTip(1, "title", "description"));
         startingTips.add(new ReadingTip(2, "a", "b"));
         when(rtService.getTips()).thenReturn(startingTips);
+        rtService.add("asd", "testi");
         listReadingTips = new ListReadingTips(io, rtService);
     }
     
@@ -43,4 +47,13 @@ public class ListReadingTipsTest {
         listReadingTips.execute();
         verify(io).output("No tips");
     }
+
+    @Test
+    public void unreadTipsListingCallsCorrectMethod() throws SQLException {
+        when(io.input()).thenReturn("unread");
+        listReadingTips.execute();
+        verify(rtService).getReadOrUnreadTips(false);
+    }
+
+
 }
