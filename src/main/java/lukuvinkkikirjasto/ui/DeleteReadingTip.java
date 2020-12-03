@@ -22,7 +22,7 @@ public class DeleteReadingTip extends Command {
             if (!rtService.tipExists(id)) {
                 io.output("Could not find responding tip.");
                 return;
-            }  
+            }
         } catch (Exception e) {
             io.output("Id must be a number.");
             return;

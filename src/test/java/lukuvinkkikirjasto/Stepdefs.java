@@ -59,6 +59,16 @@ public class Stepdefs {
         verify(fakeDatabase).create(eq(header), anyString());
     }
 
+    @Then("the tip with id {int} is removed.")
+    public void theTipIsRemoved(int id) throws SQLException {
+        verify(fakeDatabase).delete(id);
+    }
+
+    @Then("the tip with id {int} is not removed.")
+    public void theTipsIsNotRemoved(int id) throws SQLException {
+        verify(fakeDatabase, times(0)).delete(id);
+    }
+
     @Given("tip with header {string} and description {string} is added")
     public void tipWithHeaderAndDescriptionIsAdded(String string, String string2) throws SQLException {
         rtService.add(string, string2);
@@ -86,6 +96,23 @@ public class Stepdefs {
     @When("id {int} and new description {string} are given")
     public void idAndNewDescriptionAreGiven(int id, String description) throws SQLException {
         rtService.editDescription(id, description);
+    }
+
+    @When ("delete id {string} is given")
+    public void deleteIdIsGiven(String id) {
+        when(io.input()).thenReturn(id);
+    }
+
+    @When("delete id {int} and confirmation {string} are given")
+    public void deleteIdAndConfirmationAreGiven(int id, String confirmation) throws SQLException {
+        if (confirmation.equals("y")) {
+            rtService.delete(id);
+        }
+    }
+
+    @When("confirmation {string} is given")
+    public void confirmationIsGiven(String confirmation) throws SQLException {
+        when(io.input()).thenReturn(confirmation);
     }
 
     @Then("tip with id {int} has its description changed to {string}")
