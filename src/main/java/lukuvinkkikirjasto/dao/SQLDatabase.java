@@ -101,4 +101,21 @@ public class SQLDatabase implements Database {
         return tipList;
     }
 
+    public ArrayList<ReadingTip> searchFromTips(String text) throws SQLException {
+        ArrayList<ReadingTip> tipList = new ArrayList<>();
+        PreparedStatement p = db.prepareStatement("SELECT * FROM TIPS WHERE title LIKE ? OR description LIKE ?");
+        p.setString(1, "%" + text + "%");
+        p.setString(2, "%" + text + "%");
+        ResultSet r = p.executeQuery();
+        while (r.next()) {
+            tipList.add(new ReadingTip(
+                    r.getInt("id"),
+                    r.getString("title"),
+                    r.getString("description"),
+                    r.getBoolean("read")
+            ));
+        }
+        return tipList;
+    }
+
 }

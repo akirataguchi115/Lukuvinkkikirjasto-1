@@ -22,4 +22,6 @@ public interface Database {
     void setReadStatusToTrue(int id) throws SQLException;
 
     ArrayList<ReadingTip> getReadOrUnreadTips(boolean read) throws SQLException;
+
+    ArrayList<ReadingTip> searchFromTips(String text) throws SQLException;
 }
