@@ -40,7 +40,7 @@ public class MarkAsReadTest {
     @Test
     public void markAsReadGivesErrorMessageWhenTipDoesNotExist() throws SQLException {
         when(io.input()).thenReturn("99");
-        when(rtService.tipExists(1)).thenReturn(false);
+        when(rtService.tipExists(99)).thenReturn(false);
         markAsRead.execute();
         verify(io).output("Could not find responding tip.");
     }
