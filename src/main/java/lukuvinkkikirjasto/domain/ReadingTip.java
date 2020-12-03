@@ -46,27 +46,6 @@ public class ReadingTip {
     public void setReadStatus(Boolean read) {
         this.read = read;
     }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final ReadingTip other = (ReadingTip) obj;
-        if (!Objects.equals(this.header, other.header)) {
-            return false;
-        }
-        if (!Objects.equals(this.description, other.description)) {
-            return false;
-        }
-        return true;
-    }
     
     @Override
     public String toString() {
